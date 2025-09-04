@@ -1,3 +1,9 @@
+# Task Tracker CLI
+
+Solution for roadmap.sh challenge
+
+Project URL: https://github.com/AyanDosniyazov/task-tracker-cli
+
 # Adding a new task
 go run cmd/main.go add "Buy groceries"
 # Updating and deleting tasks
