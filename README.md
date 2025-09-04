@@ -2,7 +2,7 @@
 
 Solution for roadmap.sh challenge
 
-Project URL: https://github.com/AyanDosniyazov/task-tracker-cli
+Project URL: https://roadmap.sh/projects/task-tracker?fl=1
 
 # Adding a new task
 go run cmd/main.go add "Buy groceries"
