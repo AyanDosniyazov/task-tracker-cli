@@ -36,16 +36,40 @@ func (c *Commands) Execute(args []string, tasks task.Tasks, storage storage.Stor
 		}
 		tasks.Add(description)
 	case "update":
-		var status task.Status
+		var description string
 		var id int
 		if len(args) > 3 {
 			id, _ = strconv.Atoi(args[2])
-			status = task.Status(args[3])
+			description = args[3]
 		} else {
 			return errors.New("invalid argument")
 		}
 
-		err := tasks.Update(id, status)
+		err := tasks.Update(id, description, "")
+		if err != nil {
+			return err
+		}
+	case "mark-in-progress":
+		var id int
+		if len(args) > 2 {
+			id, _ = strconv.Atoi(args[2])
+		} else {
+			return errors.New("invalid argument")
+		}
+
+		err := tasks.Update(id, "", task.StatusInProgress)
+		if err != nil {
+			return err
+		}
+	case "mark-done":
+		var id int
+		if len(args) > 2 {
+			id, _ = strconv.Atoi(args[2])
+		} else {
+			return errors.New("invalid argument")
+		}
+
+		err := tasks.Update(id, "", task.StatusDone)
 		if err != nil {
 			return err
 		}

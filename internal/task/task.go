@@ -47,13 +47,18 @@ func (t *Tasks) Add(description string) {
 	t.Task = append(t.Task, task)
 }
 
-func (t *Tasks) Update(id int, status Status) error {
-	if !status.isValid() {
+func (t *Tasks) Update(id int, description string, status Status) error {
+	if status == "" || !status.isValid() {
 		return errors.New("invalid status")
 	}
 	for i, _ := range t.Task {
 		if i+1 == id {
-			t.Task[i].Status = string(status)
+			if description != "" {
+				t.Task[i].Description = description
+			}
+			if status != "" {
+				t.Task[i].Status = string(status)
+			}
 			t.Task[i].UpdatedAt = time.Now()
 		}
 	}
